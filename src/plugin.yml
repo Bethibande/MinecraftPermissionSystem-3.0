@@ -1,0 +1,9 @@
+  name: BPerms
+  main: de.bethibande.bperms.spigot.SpigotMain
+  version: 3.0
+  description: A simple to use permission system, made by Bethibande
+  author: Bethibande
+  commands:
+       bperms:
+         permission: bperms.admin
+         description: Open the bperms gui

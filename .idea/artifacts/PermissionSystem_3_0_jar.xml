@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PermissionSystem-3.0:jar">
+    <output-path>$USER_HOME$/Desktop/Coding/tests/spigot-1.8/plugins</output-path>
+    <root id="archive" name="PermissionSystem-3.0.jar">
+      <element id="module-output" name="PermissionSystem-3.0" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Coding/apis/GuiLib.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Coding/apis/BungeeCord.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Coding/apis/gson-2.8.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Coding/apis/lombok.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Coding/apis/mysql-connector-java-8.0.22.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Coding/apis/spigot.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
