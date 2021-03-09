@@ -8,10 +8,10 @@ import de.bethibande.guilib.ui.GuiManager;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class SpigotMain extends JavaPlugin {
+public class BPermsSpigot extends JavaPlugin {
 
     @Getter
-    private static SpigotMain plugin;
+    private static BPermsSpigot plugin;
 
     @Override
     public void onEnable() {

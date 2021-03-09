@@ -2,7 +2,7 @@ package de.bethibande.bperms.spigot.ui.settings;
 
 import de.bethibande.bperms.configs.MysqlConfig;
 import de.bethibande.bperms.core.BPerms;
-import de.bethibande.bperms.spigot.SpigotMain;
+import de.bethibande.bperms.spigot.BPermsSpigot;
 import de.bethibande.bperms.spigot.ui.SettingsGui;
 import de.bethibande.bperms.spigot.utils.GuiUtils;
 import de.bethibande.guilib.ui.Gui;
@@ -29,7 +29,7 @@ public class MysqlGui {
         String[] hostLore = new String[]{"§7Click to change the host ip address", "§7Current host ip§8: §b" + mysqlConfig.host};
         GuiButton host = new GuiButton("Mysql host address", Material.ENDER_CHEST, hostLore, 'f', 'b');
         host.setAction(e -> {
-            Bukkit.getScheduler().scheduleAsyncDelayedTask(SpigotMain.getPlugin(), () -> {
+            Bukkit.getScheduler().scheduleAsyncDelayedTask(BPermsSpigot.getPlugin(), () -> {
                 String ip = GuiUtils.awaitTextInput(p, "§b§lChange mysql host", "§7Please enter a new address (in chat, ipv4)", 128);
                 if(ip != null) BPerms.getInstance().getMysqlConfig().host = ip;
                host.setLore(new String[]{"§7Click to change the host ip address", "§7Current host ip§8: §b" + mysqlConfig.host});
@@ -41,7 +41,7 @@ public class MysqlGui {
         String[] portLore = new String[]{"§7Click to change the host port", "§7Current host port§8: §b" + mysqlConfig.port};
         GuiButton port = new GuiButton("Mysql host port", Material.EYE_OF_ENDER, portLore, 'f', 'b');
         port.setAction(e -> {
-            Bukkit.getScheduler().scheduleAsyncDelayedTask(SpigotMain.getPlugin(), () -> {
+            Bukkit.getScheduler().scheduleAsyncDelayedTask(BPermsSpigot.getPlugin(), () -> {
                 int _port = GuiUtils.awaitNumberInput(p, "§b§lChange mysql port", "§7Please enter a new port (in chat, number)", 8);
                 if(_port != 0) BPerms.getInstance().getMysqlConfig().port = _port + "";
                 port.setLore(new String[]{"§7Click to change the host port", "§7Current host port§8: §b" + mysqlConfig.port});
@@ -53,7 +53,7 @@ public class MysqlGui {
         String[] databaseLore = new String[]{"§7Click to change the mysql database", "§7Current database§8: §b" + mysqlConfig.database};
         GuiButton database = new GuiButton("Mysql database", Material.CHEST, databaseLore, 'f', 'b');
         database.setAction(e -> {
-            Bukkit.getScheduler().scheduleAsyncDelayedTask(SpigotMain.getPlugin(), () -> {
+            Bukkit.getScheduler().scheduleAsyncDelayedTask(BPermsSpigot.getPlugin(), () -> {
                 String db = GuiUtils.awaitTextInput(p, "§b§lChange mysql database", "§7Please enter a new database name (in chat, text)", 128);
                 if (db != null) BPerms.getInstance().getMysqlConfig().database = db;
                 database.setLore(new String[]{"§7Click to change the mysql database", "§7Current database§8: §b" + mysqlConfig.database});
@@ -65,7 +65,7 @@ public class MysqlGui {
         String[] userLore = new String[]{"§7Click to change the mysql username", "§7Current username§8: §b" + mysqlConfig.username};
         GuiButton user = new GuiButton("Mysql username", Material.LEATHER_CHESTPLATE, userLore, 'f', 'b');
         user.setAction(e -> {
-            Bukkit.getScheduler().scheduleAsyncDelayedTask(SpigotMain.getPlugin(), () -> {
+            Bukkit.getScheduler().scheduleAsyncDelayedTask(BPermsSpigot.getPlugin(), () -> {
                 String username = GuiUtils.awaitTextInput(p, "§b§lChange mysql username", "§7Please enter a new username (in chat, text)", 128);
                 if (username != null) BPerms.getInstance().getMysqlConfig().username = username;
                 user.setLore(new String[]{"§7Click to change the mysql username", "§7Current username§8: §b" + mysqlConfig.username});
@@ -77,7 +77,7 @@ public class MysqlGui {
         String[] passwordLore = new String[]{"§7Click to change the mysql password", "§7Current password§8: §b" + mysqlConfig.password.replaceAll("[a-z0-9A-Z]", "*")};
         GuiButton password = new GuiButton("Mysql password", Material.NAME_TAG, passwordLore, 'f', 'b');
         password.setAction(e -> {
-            Bukkit.getScheduler().scheduleAsyncDelayedTask(SpigotMain.getPlugin(), () -> {
+            Bukkit.getScheduler().scheduleAsyncDelayedTask(BPermsSpigot.getPlugin(), () -> {
                 String pw = GuiUtils.awaitTextInput(p, "§b§lChange mysql password", "§7Please enter a new password (in chat, text)", 128);
                 if (pw != null) BPerms.getInstance().getMysqlConfig().password = pw;
                 password.setLore(new String[]{"§7Click to change the mysql password", "§7Current password§8: §b" + mysqlConfig.password.replaceAll("[a-z0-9A-Z]", "*")});
