@@ -1,9 +1,13 @@
 package de.bethibande.bperms.spigot.ui;
 
 import de.bethibande.bperms.core.BPerms;
+import de.bethibande.bperms.spigot.BPermsSpigot;
+import de.bethibande.bperms.spigot.ui.selection.GroupSelectionGui;
+import de.bethibande.bperms.struct.PermissionGroup;
 import de.bethibande.guilib.ui.Gui;
 import de.bethibande.guilib.ui.GuiManager;
 import de.bethibande.guilib.ui.button.GuiButton;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
@@ -18,6 +22,11 @@ public class MenuGui {
         close.setSubId((short)1);
         close.setAction(e -> p.closeInventory());
         gui.addButton(close, 3, 4);
+
+        String[] groupsLore = new String[]{"§7Click to open group settings"};
+        GuiButton groups = new GuiButton("Permission groups", Material.LEATHER_CHESTPLATE, groupsLore, 'f', 'b');
+        groups.setAction(e -> GroupMenuGui.openGroupMenu(p));
+        gui.addButton(groups, 1, 1);
 
         String[] settingsLore = new String[]{"§7Click to open the settings", " §7- Default chat format", " §7- Mysql settings", " §7- default parent group"};
         GuiButton settings = new GuiButton("Settings", Material.ANVIL, settingsLore, 'f', 'b');

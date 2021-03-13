@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import java.util.UUID;
 
-public class PermissionGroup {
+public class PermissionGroup implements Comparable<PermissionGroup> {
 
     @Getter
     private final UUID id;
@@ -14,7 +14,7 @@ public class PermissionGroup {
     private String displayName;
     @Getter
     @Setter
-    private int sortId;
+    private Integer sortId;
     @Getter
     private final PermissionCollection permissions;
     @Getter
@@ -51,6 +51,11 @@ public class PermissionGroup {
 
     public void removePermission(String permission) {
         permissions.removePermission(permission);
+    }
+
+    @Override
+    public int compareTo(PermissionGroup group) {
+        return getSortId().compareTo(group.getSortId());
     }
 
 }

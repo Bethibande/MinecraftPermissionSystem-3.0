@@ -1,10 +1,12 @@
 package de.bethibande.bperms.management;
 
+import de.bethibande.bperms.core.BPerms;
 import de.bethibande.bperms.storage.GroupSerializer;
 import de.bethibande.bperms.storage.SqlField;
 import de.bethibande.bperms.storage.SqlStorage;
 import de.bethibande.bperms.struct.PermissionCollection;
 import de.bethibande.bperms.struct.PermissionGroup;
+import de.bethibande.bperms.utils.TimeUtils;
 import lombok.NonNull;
 import org.bukkit.Material;
 
@@ -52,8 +54,13 @@ public class GroupManager {
     }
 
     public void loadAllGroupsFromMysql() {
+        BPerms.getInstance().getLogger().log("§7Group storage » §aLoading permission groups from mysql");
+        long start = TimeUtils.getTimeInMillis();
         Collection<UUID> keys = groupStorage.getAllKeys().stream().map(key -> UUID.fromString(key)).collect(Collectors.toList());
         keys.forEach(groupStorage::get);
+        long finish = TimeUtils.getTimeInMillis();
+        BPerms.getInstance().getLogger().log("§7Group storage » §aLoaded a total of " + keys.size() + " permission groups");
+        BPerms.getInstance().getLogger().log("§7Group storage » §aQueried in a total of " + (finish-start) + " ms");
     }
 
     public Collection<PermissionGroup> getAll() {
