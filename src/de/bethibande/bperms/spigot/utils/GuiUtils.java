@@ -81,7 +81,7 @@ public class GuiUtils implements Listener {
             }
         }
         chatInputs.remove(p);
-        if(provider.getResult() == null) provider.setResult("0");
+        if(provider.getResult() == null) provider.setResult("-1");
         return Integer.parseInt(provider.getResult());
     }
 
@@ -105,8 +105,10 @@ public class GuiUtils implements Listener {
                 if(provider.getType() == ChatInputType.NUMBER) {
                     try {
                         int number = Integer.parseInt(text);
-                        provider.setResult(number + "");
-                        e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.LEVEL_UP, 1, 1);
+                        if(number >= 0) {
+                            provider.setResult(number + "");
+                            e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.LEVEL_UP, 1, 1);
+                        } else e.getPlayer().sendMessage(BPerms.CHAT_PREFIX + "§cYour input has to be greater or equal to 0!");
                     } catch(NumberFormatException ex) {
                         e.getPlayer().sendMessage(BPerms.CHAT_PREFIX + "§cYour input has to be a whole number!");
                     }

@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
 public class GroupSelectionGui {
 
     private static final HashMap<UUID, PermissionGroup> groupSelection = new HashMap<>();
-    // 10 min
-    private static final long timeOut = 60*10;
+    // 1 min
+    private static final long timeOut = 60;
 
     private long start;
     private boolean interrupt = false;
@@ -29,8 +29,6 @@ public class GroupSelectionGui {
     }
 
     public PermissionGroup openSelection(Player _player, int _page, GuiButtonAction closeButtonAction) {
-        Gui currentGui = GuiManager.getCurrentGui(_player.getUniqueId());
-        if(!_player.getOpenInventory().getTitle().equals(currentGui.getTitle())) currentGui = null;
         Gui gui = new Gui(BPerms.INVENTORY_HEADER + " §8> §7Groups §8> §7select", 5, _player);
         gui.create();
 
@@ -96,10 +94,6 @@ public class GroupSelectionGui {
             }
         }
 
-        if(currentGui != null) {
-            Gui finalCurrentGui = currentGui;
-            Bukkit.getScheduler().scheduleSyncDelayedTask(BPermsSpigot.getPlugin(), () -> GuiManager.openGui(finalCurrentGui));
-        }
         return groupSelection.get(_player.getUniqueId());
     }
 

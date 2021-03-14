@@ -19,7 +19,7 @@ public class MysqlGui {
         gui.create();
 
         String[] backLore = new String[]{"§7Go back the the settings menu"};
-        GuiButton back = new GuiButton("Back to settings", Material.INK_SACK, backLore, 'f', 'c');
+        GuiButton back = new GuiButton("Go back", Material.INK_SACK, backLore, 'f', 'c');
         back.setSubId((short)1);
         back.setAction(e -> SettingsGui.openSettings(p));
         gui.addButton(back, 3, 4);
@@ -43,7 +43,7 @@ public class MysqlGui {
         port.setAction(e -> {
             Bukkit.getScheduler().scheduleAsyncDelayedTask(BPermsSpigot.getPlugin(), () -> {
                 int _port = GuiUtils.awaitNumberInput(p, "§b§lChange mysql port", "§7Please enter a new port (in chat, number)", 8);
-                if(_port != 0) BPerms.getInstance().getMysqlConfig().port = _port + "";
+                if(_port != -1) BPerms.getInstance().getMysqlConfig().port = _port + "";
                 port.setLore(new String[]{"§7Click to change the host port", "§7Current host port§8: §b" + mysqlConfig.port});
                 GuiManager.reopenGui(p.getUniqueId());
             });

@@ -1,8 +1,10 @@
 package de.bethibande.bperms.spigot.ui;
 
 import de.bethibande.bperms.core.BPerms;
+import de.bethibande.bperms.management.GroupManager;
 import de.bethibande.bperms.spigot.BPermsSpigot;
 import de.bethibande.bperms.spigot.ui.selection.GroupSelectionGui;
+import de.bethibande.bperms.spigot.utils.GuiUtils;
 import de.bethibande.bperms.struct.PermissionGroup;
 import de.bethibande.guilib.ui.Gui;
 import de.bethibande.guilib.ui.GuiManager;
@@ -19,6 +21,18 @@ public class GroupMenuGui {
 
         String[] createLore = new String[]{"§7Create a new permission group"};
         GuiButton create = new GuiButton("Create group", Material.EMERALD_BLOCK, createLore, 'f', 'a');
+        create.setAction(a -> {
+            Bukkit.getScheduler().scheduleAsyncDelayedTask(BPermsSpigot.getPlugin(), () -> {
+               String name = GuiUtils.awaitTextInput(_player, "§b§lCreate new group", "§7Please enter a name for the new group", 128);
+               if(name != null) {
+                   GroupManager manager = BPerms.getInstance().getGroupManager();
+                   if(!manager.groupNameExists(name)) {
+                       manager.createGroup(name);
+                   } else _player.sendMessage(BPerms.CHAT_PREFIX + "There already is a group with this name!");
+               }
+               openGroupMenu(_player);
+            });
+        });
         gui.addButton(create, 1, 1);
 
         String[] editLore = new String[]{"§7Edit an existing permission group"};
@@ -27,7 +41,7 @@ public class GroupMenuGui {
             Bukkit.getScheduler().scheduleAsyncDelayedTask(BPermsSpigot.getPlugin(), () -> {
                 PermissionGroup group = new GroupSelectionGui().openSelection(_player, 0, a2 -> openGroupMenu(_player));
                 if(group != null) {
-                    _player.sendMessage("edit group: " + group.getDisplayName());
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(BPermsSpigot.getPlugin(), () -> GroupEditMenu.openGroupEditMenu(_player, group));
                 }
             });
         });

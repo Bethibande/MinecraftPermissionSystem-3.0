@@ -53,6 +53,7 @@ public class SettingsGui {
                     BPerms.getInstance().saveConfigToMysql();
                     group.setLore(new String[]{"§7Select the default parent group", "§7Current default parent group§8: §b" + BPerms.getInstance().getGroupManager().getGroup(BPerms.getInstance().getConfig().default_parent_group).getDisplayName()});
                 }
+                Bukkit.getScheduler().scheduleSyncDelayedTask(BPermsSpigot.getPlugin(), () -> SettingsGui.openSettings(p));
             });
         });
         gui.addButton(group, 1, 1);
